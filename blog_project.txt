@@ -1,0 +1,83 @@
+# Blog API
+The goal is to write a CRUD interface that implements a simple blog.
+
+Your solution should be able to do the following:
+
+  1. Load latest entry as index/home page
+  2. Load archive list
+  3. Allow addition of new articles
+  4. Allow deletion of previous articles
+  5. Allow modification of previous articles
+
+You only need to focus on providing us with a front end solution. Your solution should include at least one html page, that demostrates the above features. Below is the API spec for the REST endpoints. Feel free to create a test server and include with your project but its not necessary. You may only use DOM apis and jQuery (strictly for ajax calls). Other frameworks such as angular, backbone, underscore are not permitted.
+
+Priorities:
+ 1. Correctness
+ 2. Implementation time
+ 3. Elegance of code
+ 4. Anything else you think we might care about in a coding problem.
+
+
+### Turning in your solution
+Create a github project with a README.md explaining your solution
+
+### Service API
+
+A blog post object
+
+``` json
+{
+  "id": "97f95f75-0c02-4449-af28-5ec742fdaab0",
+  "title": "First Post",
+  "text": "Woot, this is my first blog post. I'm really interesting!!!",
+  "timestamp": "2015-03-25T12:00:00"
+}
+
+```
+
+- id: <string> - unique id for a blog post
+- title: <string> - title of the post
+- text: <string> - post text
+- timestamp: <string> - date and time of post creation, ISO format YYYY-MM-DDTHH:MM:SS
+
+#### API
+
+Get all blog posts
+
+```
+GET   /v1/posts/
+```
+
+Get blog post by id
+
+```
+GET   /v1/posts/<blog_post_id>
+```
+
+Create post
+
+```
+POST  /v1/posts/
+
+Body: {
+  "title": ...
+  "text": ...
+}
+```
+
+Update post
+
+```
+POST  /v1/posts/<blog_post_id>
+
+Body: {
+  "title": ...
+  "text": ...
+}
+```
+
+Delete post
+
+```
+DELETE  /v1/posts/<blog_post_id>
+```
