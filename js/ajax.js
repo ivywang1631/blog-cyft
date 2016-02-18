@@ -1,6 +1,7 @@
 'use strict'
 var api = {
-  url: 'http://localhost:3000',
+  url: 'http://localhost:3000/v1',
+  // url: 'http://localhost:3000',
   ajax: function(config, cb) {
     $.ajax(config).done(function(data, textStatus, jqxhr) {
       cb(null, data);
@@ -12,7 +13,7 @@ var api = {
   createPost: function(postInfo, callback) {
     this.ajax({
       method: 'POST',
-      url: this.url + '/v1/posts',
+      url: this.url + '/posts',
       contentType: 'application/json; charset=utf-8',
       data: JSON.stringify(postInfo),
       dataType: 'json'
@@ -22,7 +23,7 @@ var api = {
   listArchive: function(callback) {
     this.ajax({
       method: 'GET',
-      url: this.url + '/v1/posts',
+      url: this.url + '/posts',
       dataType: 'json'
     }, callback);
   },
@@ -30,7 +31,7 @@ var api = {
   listPost: function(id, callback) {
     this.ajax({
       method: 'GET',
-      url: this.url + '/v1/posts' + id,
+      url: this.url + '/posts' + id,
       dataType: 'json'
     }, callback);
   },
@@ -38,7 +39,7 @@ var api = {
   updatePost: function(id, editInfo, callback) {
     this.ajax({
       method: 'PATCH',
-      url: this.url + '/v1/posts/' + id,
+      url: this.url + '/posts/' + id,
       contentType: 'application/json; charset=utf-8',
       data: JSON.stringify(editInfo),
       dataType: 'json'
@@ -48,7 +49,7 @@ var api = {
   deletePost: function(id, callback) {
     this.ajax({
       method: 'DELETE',
-      url: this.url + '/v1/posts/' + id,
+      url: this.url + '/posts/' + id,
       headers: {
         Authorization: 'Token token=' + token
       },
