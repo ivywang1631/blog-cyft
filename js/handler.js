@@ -9,18 +9,12 @@ function form2object(form) {
   return data;
 };
 
-function wrap(root, formData) {
-  var wrapper = {};
-  wrapper[root] = formData;
-  return wrapper;
-};
-
 function archiveHandler(){
   archiveShow();
   // loop through all posts for view rendering
   api.listArchive(function(error, data){
     if(error) console.error(error);
-    $(".archive-content").html("");
+    // $(".archive-content").html("");
     data.forEach(function(post){
       $(".archive-content").append("<div class='post-preview'><a href='single_post.html'><h2 class='post-title'>" + post.title + "</h2></a><p class='post-meta'>" + post.text + "</div><hr>");
     });
@@ -43,12 +37,12 @@ $(document).ready(function(){
   $(".post-form").on("submit",function(e){
     e.preventDefault();
     // JSON constructor
-    var postInfo = wrap('v1_post', form2object(this));
+    var postInfo = form2object(this);
     // create post
     api.createPost(postInfo, function(error, data){
       if(error) console.error(error);
-      // redirect user to archive page after post creation
-      archiveHanlder();
+      // redirect user to archive page after post creation & populate views
+      archiveHandler();
     })
 
   })
