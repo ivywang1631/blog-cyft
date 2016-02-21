@@ -17,10 +17,27 @@ function wrap(root, formData) {
 
 function deleteHandler(){
   $(".delete-post").click(function(e){
-    postId = e.target.id.split("-")[1];
+    var postId = e.target.id.split("-")[1];
     api.deletePost(postId, function(error, data){
       if(error) console.error(error);
       archiveHandler();
+    })
+  })
+}
+
+function editHandler(){
+  $(".edit").click(function(e){
+    var postId = e.target.id.split("-")[1];
+    var currentPost;
+    editPostShow();
+    api.listPost(postId, function(error, data){
+      if(error) console.error(error);
+      currentPost = data;
+      // auto populate form fields
+      $(".edit-post-form").find(":input").each(function(index, element) {
+        if ($(this).attr("name") === "title") {$(this).attr("value", currentPost.title);}
+        if ($(this).attr("name") === "text") {$(this).val(currentPost.text);}
+      })
     })
   })
 }
@@ -51,6 +68,7 @@ function archiveHandler(){
       $(".archive-content").append("<div class='post-preview' id='" + post.id + "'><a href='single_post.html'><h2 class='post-title'>" + post.title + "</h2></a><p class='post-meta'>" + post.text + "</div><div style='font-size: 14px; font-style: italic'>Created at: " + new Date(post.created_at) + "</div><div><a><div style='float: left;margin-right: 20px;' class='edit' id='edit-" + post.id + "'>Edit</div></a><a><div class='delete-post' id='delete-" + post.id + "'>Delete</div></a></div><hr>");
     });
     deleteHandler();
+    editHandler();
   })
 }
 

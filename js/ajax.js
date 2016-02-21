@@ -31,7 +31,7 @@ var api = {
   listPost: function(id, callback) {
     this.ajax({
       method: 'GET',
-      url: this.url + '/posts' + id,
+      url: this.url + '/posts/' + id,
       dataType: 'json'
     }, callback);
   },
