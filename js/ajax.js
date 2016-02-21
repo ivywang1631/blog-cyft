@@ -1,7 +1,7 @@
 'use strict'
 var api = {
-  url: 'http://localhost:3000/v1',
-  //url: 'https://peaceful-crag-83905.herokuapp.com/v1',
+  //url: 'http://localhost:3000/v1',
+  url: 'https://peaceful-crag-83905.herokuapp.com/v1',
   ajax: function(config, cb) {
     $.ajax(config).done(function(data, textStatus, jqxhr) {
       cb(null, data);
