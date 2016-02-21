@@ -14,8 +14,9 @@ function archiveHandler(){
   // loop through all posts for view rendering
   api.listArchive(function(error, data){
     if(error) console.error(error);
-    // $(".archive-content").html("");
-    data.forEach(function(post){
+    console.log(data);
+    $(".archive-content").html("");
+    data.posts.forEach(function(post){
       $(".archive-content").append("<div class='post-preview'><a href='single_post.html'><h2 class='post-title'>" + post.title + "</h2></a><p class='post-meta'>" + post.text + "</div><hr>");
     });
   })
