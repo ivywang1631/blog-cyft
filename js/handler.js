@@ -24,7 +24,7 @@ function archiveHandler(){
     console.log(data);
     $(".archive-content").html("");
     data.posts.forEach(function(post){
-      $(".archive-content").append("<div class='post-preview'><a href='single_post.html'><h2 class='post-title'>" + post.title + "</h2></a><p class='post-meta'>" + post.text + "</div><hr>");
+      $(".archive-content").append("<div class='post-preview' id='" + post.id + "'><a href='single_post.html'><h2 class='post-title'>" + post.title + "</h2></a><p class='post-meta'>" + post.text + "</div><div><a><div style='float: left;margin-right: 20px;' class='edit' id='edit-" + post.id + "'>Edit</div></a><a><div class='delete' id='delete-" + post.id + "'>Delete</div></a></div><hr>");
     });
   })
 }
