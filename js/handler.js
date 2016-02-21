@@ -1,3 +1,5 @@
+var currentPost;
+
 function form2object(form) {
   var data = {};
   $(form).find(":input").each(function(index, element) {
@@ -28,28 +30,15 @@ function deleteHandler(){
 function editHandler(){
   $(".edit").click(function(e){
     var postId = e.target.id.split("-")[1];
-    var currentPost;
+    console.log(postId);
     editPostShow();
     api.listPost(postId, function(error, data){
       if(error) console.error(error);
       currentPost = data;
+      console.log(currentPost);
       // auto populate form fields
-      $(".edit-post-form").find(":input").each(function(index, element) {
-        if ($(this).attr("name") === "title") {$(this).attr("value", currentPost.title);}
-        if ($(this).attr("name") === "text") {$(this).val(currentPost.text);}
-      })
-    })
-    // update form listener
-    $(".edit-post-form").on("submit", function(e){
-      e.preventDefault();
-      // JSON constructor
-      var postInfo = wrap('v1_post', form2object(this));
-      // update post
-      api.updatePost(postId, postInfo, function(error, data){
-        if(error) console.error(error);
-        // redirect user to archive page after post creation & populate views
-        archiveHandler();
-      })
+      $("#text-edit").val(currentPost.text);
+      $("#title-edit").val(currentPost.title);
     })
   })
 }
@@ -106,6 +95,20 @@ $(document).ready(function(){
     var postInfo = wrap('v1_post', form2object(this));
     //create post
     api.createPost(postInfo, function(error, data){
+      if(error) console.error(error);
+      // redirect user to archive page after post creation & populate views
+      archiveHandler();
+    })
+  })
+
+    // update form listener
+  $(".edit-post-form").on("submit", function(e){
+    e.preventDefault();
+    // JSON constructor
+    var postInfo = wrap('v1_post', form2object(this));
+    // update post
+    console.log(currentPost.id);
+    api.updatePost(currentPost.id, postInfo, function(error, data){
       if(error) console.error(error);
       // redirect user to archive page after post creation & populate views
       archiveHandler();
