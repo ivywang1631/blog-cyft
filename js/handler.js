@@ -39,6 +39,18 @@ function editHandler(){
         if ($(this).attr("name") === "text") {$(this).val(currentPost.text);}
       })
     })
+    // update form listener
+    $(".edit-post-form").on("submit", function(e){
+      e.preventDefault();
+      // JSON constructor
+      var postInfo = wrap('v1_post', form2object(this));
+      // update post
+      api.updatePost(postId, postInfo, function(error, data){
+        if(error) console.error(error);
+        // redirect user to archive page after post creation & populate views
+        archiveHandler();
+      })
+    })
   })
 }
 
@@ -95,12 +107,10 @@ $(document).ready(function(){
     //create post
     api.createPost(postInfo, function(error, data){
       if(error) console.error(error);
-      console.log(data);
       // redirect user to archive page after post creation & populate views
       archiveHandler();
     })
   })
-
 })
 
 
