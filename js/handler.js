@@ -25,6 +25,17 @@ function deleteHandler(){
   })
 }
 
+function initIndex(){
+  api.listArchive(function(error, data){
+    if(error) console.error(error);
+    // sort posts by creation dates (descending)
+    var latestPosts = data.posts.sort(function(a, b){
+      return new Date(b.created_at) - new Date(a.created_at);
+    }).shift();
+    $("#index-article").html("<div class='container'><div class='row'><div class='col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1'>Latest Post:</div></div><div class='row'><div class='col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1'><div class='post-heading'><h1>" + latestPosts.title + "</h1><span class='meta' style='font-size: 14px; font-style: italic'>Created at :" + new Date(latestPosts.created_at) + "</span></div></div></div></div><div class='container'><div class='row'><div class='col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1'><p>" + latestPosts.text + "</p></div></div></div>");
+  })
+}
+
 
 function archiveHandler(){
   archiveShow();
@@ -44,12 +55,15 @@ function archiveHandler(){
 }
 
 $(document).ready(function(){
+  initIndex();
+
   $("#nav-archive").click(function(){
     archiveHandler();
   })
 
   $("#nav-index").click(function(){
     indexShow();
+    initIndex();
   })
 
   $("#nav-add-post").click(function(){
