@@ -11,6 +11,7 @@ function archiveShow(){
 }
 
 function addPostShow(){
+  $(".post-form").find("input[type=text], textarea").val("");
   $(".index-page").hide();
   $(".archive-page").hide();
   $(".add-post-page").show();
