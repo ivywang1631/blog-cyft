@@ -30,12 +30,10 @@ function deleteHandler(){
 function editHandler(){
   $(".edit").click(function(e){
     var postId = e.target.id.split("-")[1];
-    console.log(postId);
     editPostShow();
     api.listPost(postId, function(error, data){
       if(error) console.error(error);
       currentPost = data;
-      console.log(currentPost);
       // auto populate form fields
       $("#text-edit").val(currentPost.text);
       $("#title-edit").val(currentPost.title);
