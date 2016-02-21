@@ -12,6 +12,6 @@ function archiveShow(){
 
 function addPostShow(){
   $(".index-page").hide();
-  $(".add-post-page").show();
   $(".archive-page").hide();
+  $(".add-post-page").show();
 }
