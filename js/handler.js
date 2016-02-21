@@ -105,7 +105,6 @@ $(document).ready(function(){
     // JSON constructor
     var postInfo = wrap('v1_post', form2object(this));
     // update post
-    console.log(currentPost.id);
     api.updatePost(currentPost.id, postInfo, function(error, data){
       if(error) console.error(error);
       // redirect user to archive page after post creation & populate views
