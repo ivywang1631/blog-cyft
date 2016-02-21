@@ -50,9 +50,6 @@ var api = {
     this.ajax({
       method: 'DELETE',
       url: this.url + '/posts/' + id,
-      headers: {
-        Authorization: 'Token token=' + token
-      },
       dataType: 'json'
     }, callback);
   }

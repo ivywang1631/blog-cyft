@@ -15,17 +15,27 @@ function wrap(root, formData) {
   return wrapper;
 };
 
+function deleteHandler(){
+  $(".delete-post").click(function(e){
+    postId = e.target.id.split("-")[1];
+    api.deletePost(postId, function(error, data){
+      if(error) console.error(error);
+      archiveHandler();
+    })
+  })
+}
+
 
 function archiveHandler(){
   archiveShow();
   // loop through all posts for view rendering
   api.listArchive(function(error, data){
     if(error) console.error(error);
-    console.log(data);
     $(".archive-content").html("");
     data.posts.forEach(function(post){
-      $(".archive-content").append("<div class='post-preview' id='" + post.id + "'><a href='single_post.html'><h2 class='post-title'>" + post.title + "</h2></a><p class='post-meta'>" + post.text + "</div><div><a><div style='float: left;margin-right: 20px;' class='edit' id='edit-" + post.id + "'>Edit</div></a><a><div class='delete' id='delete-" + post.id + "'>Delete</div></a></div><hr>");
+      $(".archive-content").append("<div class='post-preview' id='" + post.id + "'><a href='single_post.html'><h2 class='post-title'>" + post.title + "</h2></a><p class='post-meta'>" + post.text + "</div><div><a><div style='float: left;margin-right: 20px;' class='edit' id='edit-" + post.id + "'>Edit</div></a><a><div class='delete-post' id='delete-" + post.id + "'>Delete</div></a></div><hr>");
     });
+    deleteHandler();
   })
 }
 
@@ -51,10 +61,10 @@ $(document).ready(function(){
       if(error) console.error(error);
       console.log(data);
       // redirect user to archive page after post creation & populate views
-      //archiveHandler();
+      archiveHandler();
     })
-
   })
+
 })
 
 
