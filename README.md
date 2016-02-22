@@ -73,9 +73,9 @@ This is a frontend solution for a blog with regular CRUD functionalities.
   4. Testing AJAX calls and rendering return data (2-3 hours)
 
 <h2>Solutions</h2>
-This is a single-page frontend solution where all the <div>s are toggled back and forth using Javascript and CSS. View.js contains all the functions needed for changing view state, and the actual click handlers for each link are written in Handler.js. Ajax.js contains all the AJAX calls needed for the CRUD functions and are used in Handler.js as well.
+This is a single-page frontend solution where all the divs are toggled back and forth using Javascript and CSS. View.js contains all the functions needed for changing view state, and the actual click handlers for each link are written in Handler.js. Ajax.js contains all the AJAX calls needed for the CRUD functions and are used in Handler.js as well.
 
-DOM apis and jQuery are used to populate post data. They also assign new <div id> with the actual post ids obtained from the backend, so that "edit" and "delete" buttons can refer to a specific post id and make changes accordingly.
+DOM apis and jQuery are used to populate post data. They also assign new div id with the actual post ids obtained from the backend, so that "edit" and "delete" buttons can refer to a specific post id and make changes accordingly.
 
 Post data are sorted using Array.prototype.sort() in initIndex method in Handler.js, and latest post is obtained from the first element of the sorted array.
 
