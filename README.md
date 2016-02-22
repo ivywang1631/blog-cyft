@@ -1,6 +1,6 @@
 <h1>Cyft blog</h1>
 
-This is a frontend solution for a blog with regular CRUD functionalities. 
+This is a frontend solution for a blog with regular CRUD functionalities. Test API server is deployed on heroku, frontend is hosted on github.
 
 <h2>Requirements:</h2>
   1. Load latest entry as index/home page
